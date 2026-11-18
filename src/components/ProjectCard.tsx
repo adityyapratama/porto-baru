@@ -60,11 +60,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.image1 ? (
             <div
               className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-              style={
-                (project.image1Size?.[0] ?? 1) / (project.image1Size?.[1] ?? 1) >= 1
-                  ? { width: "70%" }
-                  : { width: "70%", height: 210 }
-              }
+              style={{ width: "70%", aspectRatio: "16 / 10" }}
             >
               <Image src={project.image1} alt={`${project.title} preview`} width={project.image1Size?.[0] ?? 0} height={project.image1Size?.[1] ?? 0} sizes="(max-width: 700px) 95vw, 900px" quality={95} className="h-full w-full rounded-lg border border-[#141414] object-cover object-top" />
             </div>

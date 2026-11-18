@@ -76,7 +76,7 @@ export const projects: Project[] = [
     icon: "/work/smart-unair/icon.webp",
     image1: "/work/smart-unair/desktop.webp",
     image2: "/work/smart-unair/shot-2.webp",
-    image1Size: [1400, 788],
+    image1Size: [1400, 875],
     image2Size: [1400, 1400],
   },
   {
