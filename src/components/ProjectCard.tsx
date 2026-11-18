@@ -55,14 +55,18 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
       )}
 
-      <div className="relative -mx-5 mt-auto h-[250px] flex-none overflow-hidden">
+      <div className="relative -mx-5 mt-auto h-[310px] flex-none overflow-hidden">
         <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105">
           {project.image1 ? (
             <div
               className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-              style={{ width: "70%", aspectRatio: "16 / 10" }}
+              style={
+                (project.image1Size?.[0] ?? 1) / (project.image1Size?.[1] ?? 1) >= 1
+                  ? { width: "88%", aspectRatio: `${project.image1Size?.[0]} / ${project.image1Size?.[1]}` }
+                  : { height: 270, aspectRatio: `${project.image1Size?.[0]} / ${project.image1Size?.[1]}` }
+              }
             >
-              <Image src={project.image1} alt={`${project.title} preview`} width={project.image1Size?.[0] ?? 0} height={project.image1Size?.[1] ?? 0} sizes="(max-width: 700px) 95vw, 900px" quality={95} className="h-full w-full rounded-lg border border-[#141414] object-cover object-top" />
+              <Image src={project.image1} alt={`${project.title} preview`} width={project.image1Size?.[0] ?? 0} height={project.image1Size?.[1] ?? 0} sizes="(max-width: 700px) 95vw, 900px" quality={95} className="h-full w-full rounded-lg border border-[#141414] object-cover" />
             </div>
           ) : (
             <div className="shot rounded-lg text-[11px]" style={{ left: "12%", top: 60, width: "76%", height: 180, transform: "rotate(-3deg)" }}>[IMAGE]</div>
