@@ -114,7 +114,7 @@ export const projects: Project[] = [
     icon: "/work/jagadtix/icon.svg",
     image1: "/work/jagadtix/desktop.webp",
     image2: "/work/jagadtix/shot-2.webp",
-    image1Size: [1400, 875],
+    image1Size: [1400, 670],
     image2Size: [1200, 2489],
   },
   {
