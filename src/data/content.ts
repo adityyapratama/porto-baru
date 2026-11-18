@@ -64,7 +64,7 @@ export const projects: Project[] = [
     status: "Temporarily paused",
     icon: "/work/evop/icon.svg",
     image1: "/work/evop/shot-2.webp",
-    image1Size: [1400, 875],
+    image1Size: [1400, 1611],
   },
   {
     slug: "smart-unair",
