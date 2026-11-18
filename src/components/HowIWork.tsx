@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Reveal from "./Reveal";
 
 type Step = {
   title: string;
@@ -87,7 +88,7 @@ export default function HowIWork() {
   steps.forEach((s, i) => {
     const rev = i % 2 === 1;
     rows.push(
-      <div key={`r${i}`} className={`row${rev ? " rev" : ""}`}>
+      <Reveal key={`r${i}`} variant="flip" className={`row${rev ? " rev" : ""}`}>
         <div className="tile">
           {s.icon}
           {s.checkBg && (
@@ -99,7 +100,7 @@ export default function HowIWork() {
           )}
         </div>
         <div className="stub" />
-        <div className="step" style={{ background: s.accent ? "var(--accent)" : "#fff" }}>
+        <div className="step" style={{ "--bg": s.accent ? "var(--accent)" : "#fff" } as React.CSSProperties}>
           <div className="flex items-start justify-between gap-3">
             <h3 className="text-[22px] font-medium leading-[1.1] tracking-[-0.025em]">{s.title}</h3>
             {s.chip && (
@@ -112,7 +113,7 @@ export default function HowIWork() {
             {s.outcome}
           </div>
         </div>
-      </div>,
+      </Reveal>,
     );
     if (i < steps.length - 1) {
       rows.push(
@@ -126,10 +127,10 @@ export default function HowIWork() {
 
   return (
     <section className="panel flex flex-col gap-6 p-7">
-      <div className="flex flex-col gap-1.5">
+      <Reveal variant="title" className="flex flex-col gap-1.5">
         <h2 className="display">How I work</h2>
         <span className="sub">From first chat to launch day. I always start with the problem.</span>
-      </div>
+      </Reveal>
       <div className="flow">{rows}</div>
     </section>
   );

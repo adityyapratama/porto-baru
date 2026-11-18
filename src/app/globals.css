@@ -20,7 +20,7 @@
   --color-panel: var(--panel);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 body {
   margin: 0;
   background-color: #DFEBF5;
@@ -43,10 +43,9 @@ h1, h2, h3, p { margin: 0; }
 .home-grid .left { flex: 1 1 340px; max-width: 400px; min-width: 0; }
 .home-grid .right { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
 @media (min-width: 1000px) { .home-grid .left { position: sticky; top: 24px; } }
-.works-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.works-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .meta-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding-top: 8px; }
-@media (max-width: 1000px) { .works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 680px) {
   .works-grid, .detail-grid, .meta-grid { grid-template-columns: minmax(0, 1fr); }
 }
@@ -95,30 +94,20 @@ h1, h2, h3, p { margin: 0; }
 
 /* ---------- How I work flow ---------- */
 .flow { display: flex; flex-direction: column; box-sizing: border-box; }
-.flow .row { position: relative; display: flex; align-items: center; animation: popIn .55s cubic-bezier(.3,1.4,.5,1) backwards; }
+.flow .row { position: relative; display: flex; align-items: center; }
 .flow .row.rev { flex-direction: row-reverse; }
-.flow .row:nth-child(1) { animation-delay: .1s; }
-.flow .row:nth-child(3) { animation-delay: .5s; }
-.flow .row:nth-child(5) { animation-delay: .9s; }
-.flow .row:nth-child(7) { animation-delay: 1.3s; }
-.flow .row::before, .flow .row::after { content: ""; position: absolute; left: 46px; width: 4px; height: calc(50% - 48px); background: var(--connector); z-index: 1; }
+.flow .row::before, .flow .row::after { content: ""; position: absolute; left: 46px; width: 4px; height: calc(50% - 48px); background: transparent; z-index: 1; }
 .flow .row.rev::before, .flow .row.rev::after { left: auto; right: 46px; }
 .flow .row::before { top: 0; }
 .flow .row::after { bottom: 0; }
 .flow .row:nth-child(1)::before, .flow .row:nth-child(7)::after { display: none; }
 .flow .tile { position: relative; z-index: 2; flex: none; width: 96px; height: 96px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #F6F6F6; border: 1px solid var(--ink); border-radius: 22px; transition: transform .15s ease; }
 .flow .row:hover .tile { transform: rotate(-4deg) scale(1.05); }
-.flow .stub { flex: none; width: 28px; height: 4px; background: var(--connector); }
+.flow .stub { flex: none; width: 28px; height: 4px; background: transparent; }
 .flow .step { flex: 1 1 0; min-width: 0; max-width: 640px; box-sizing: border-box; border: 1px solid var(--ink); border-radius: 20px; padding: 18px 22px; display: flex; flex-direction: column; gap: 8px; }
-.flow .check { position: absolute; top: -9px; right: -9px; width: 22px; height: 22px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1px solid var(--ink); border-radius: 7px; animation: pop .4s cubic-bezier(.3,1.8,.5,1) backwards; }
-.flow .row:nth-child(1) .check { animation-delay: .55s; }
-.flow .row:nth-child(3) .check { animation-delay: .95s; }
-.flow .row:nth-child(5) .check { animation-delay: 1.35s; }
-.flow .elbow { position: relative; height: 52px; margin: 0 46px; animation: fadeIn .5s ease-out backwards; }
-.flow .elbow:nth-child(2) { animation-delay: .35s; }
-.flow .elbow:nth-child(4) { animation-delay: .75s; }
-.flow .elbow:nth-child(6) { animation-delay: 1.15s; }
-.flow .elbow > div { position: absolute; width: 50%; box-sizing: border-box; border: 0 solid var(--connector); }
+.flow .check { position: absolute; top: -9px; right: -9px; width: 22px; height: 22px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1px solid var(--ink); border-radius: 7px; }
+.flow .elbow { position: relative; height: 52px; margin: 0 46px; }
+.flow .elbow > div { position: absolute; width: 50%; box-sizing: border-box; border: 0 solid transparent; }
 .flow .elbow.a > div:nth-child(1) { left: 0; top: 0; height: 26px; border-left-width: 4px; border-bottom-width: 4px; border-bottom-left-radius: 16px; }
 .flow .elbow.a > div:nth-child(2) { left: 50%; top: 22px; height: 30px; border-top-width: 4px; border-right-width: 4px; border-top-right-radius: 16px; }
 .flow .elbow.b > div:nth-child(1) { right: 0; top: 0; height: 26px; border-right-width: 4px; border-bottom-width: 4px; border-bottom-right-radius: 16px; }
@@ -126,16 +115,27 @@ h1, h2, h3, p { margin: 0; }
 @keyframes popIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 @keyframes pop { from{opacity:0;transform:scale(0)} to{opacity:1;transform:none} }
-@keyframes inkLine { from{border-color:var(--connector)} to{border-color:var(--ink)} }
-@keyframes inkStub { from{background-color:var(--connector)} to{background-color:var(--ink)} }
+@keyframes inkLine { from{border-color:transparent} to{border-color:var(--ink)} }
+@keyframes inkStub { from{background-color:transparent} to{background-color:var(--ink)} }
+@keyframes stepIn { from{background-color:#fff} to{background-color:var(--bg,#fff)} }
+@keyframes tileIn { from{opacity:0;translate:0 20px} to{opacity:1;translate:0 0} }
+.flow .step { background-color: var(--bg, #fff); }
+/* Scroll-linked: everything builds as it scrolls into view and un-builds when scrolled back up. */
 @supports (animation-timeline: view()) {
-  .flow .elbow { animation: none; }
-  .flow .elbow > div { animation: inkLine linear both; animation-timeline: view(); animation-range: entry 25% cover 55%; }
-  .flow .stub, .flow .row::before, .flow .row::after { animation: inkStub linear both; animation-timeline: view(); animation-range: entry 25% cover 55%; }
+  .flow .step { animation: stepIn linear both; animation-timeline: view(); animation-range: entry 40% cover 38%; }
+  .flow .elbow > div { animation: inkLine linear both; animation-timeline: view(); animation-range: entry 40% cover 45%; }
+  .flow .stub, .flow .row::before, .flow .row::after { animation: inkStub linear both; animation-timeline: view(); animation-range: entry 40% cover 45%; }
+}
+@supports not (animation-timeline: view()) {
+  .flow .stub, .flow .row::before, .flow .row::after { background: var(--ink); }
+  .flow .elbow > div { border-color: var(--ink); }
 }
 @media (max-width: 680px) { .flow .tile { width: 72px; height: 72px; } .flow .row::before, .flow .row::after { left: 34px; } .flow .row.rev::before, .flow .row.rev::after { right: 34px; } .flow .elbow { margin: 0 34px; } }
 @media (prefers-reduced-motion: reduce) {
   .coffee .steam { animation: none; stroke-dashoffset: 0; opacity: 1; }
-  .flow .row, .flow .elbow, .flow .check { animation: none; }
+  .flow .step, .flow .tile, .flow .stub, .flow .elbow > div, .flow .row::before, .flow .row::after { animation: none !important; }
+  .flow .stub, .flow .row::before, .flow .row::after { background: var(--ink); }
+  .flow .elbow > div { border-color: var(--ink); }
+  .flow .step { background-color: var(--bg, #fff); }
   .flow .row:hover .tile { transform: none; }
 }

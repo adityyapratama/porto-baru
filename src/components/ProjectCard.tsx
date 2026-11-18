@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { Project } from "@/data/content";
@@ -13,28 +14,37 @@ const Arrow = () => (
 export default function ProjectCard({ project }: { project: Project }) {
   const [notice, setNotice] = useState(false);
   return (
-    <div className="white card flex min-w-0 flex-col gap-3 rounded-3xl p-4">
-      <div className="white relative h-[170px] overflow-hidden rounded-2xl">
-        <div className="shot fl rounded-[10px] text-[11px]" style={{ left: "6%", top: 26, width: "50%", height: 120, zIndex: 1 }}>[IMAGE 1]</div>
-        <div className="shot fr rounded-[10px] text-[11px]" style={{ right: "6%", top: 32, width: "50%", height: 120, zIndex: 2 }}>[IMAGE 2]</div>
+    <div className="group white card flex overflow-hidden min-w-0 flex-col gap-3 rounded-3xl p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex h-12 w-12 flex-none items-center justify-center overflow-hidden rounded-xl bg-white text-[18px] font-medium">
+            {project.icon ? (
+              <Image src={project.icon} alt="" width={48} height={48} className="h-full w-full object-contain p-1.5" />
+            ) : (
+              project.title.charAt(0).toUpperCase()
+            )}
+          </div>
+          <div className="flex min-w-0 flex-col items-start gap-1">
+            <h2 className="text-[23px] font-medium leading-tight tracking-[-0.02em]">{project.title}</h2>
+            {project.status && (
+              <span className="pill px-2.5 text-[12px]" style={{ background: "var(--accent)" }}>{project.status}</span>
+            )}
+          </div>
+        </div>
+        <div className="flex flex-none items-center gap-1.5">
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className="btn flex h-8 w-8 items-center justify-center rounded-lg border border-[#141414] bg-white">
+              <Image src="/github.svg" alt="" width={16} height={16} />
+            </a>
+          )}
+        </div>
       </div>
-      <h2 className="text-[21px] font-medium tracking-[-0.02em]">{project.title}</h2>
       <p className="text-[14px] leading-normal text-[#6B6B6B]">{project.desc}</p>
       <div className="flex flex-wrap gap-1.5">
         {project.tags.map((t) => (
           <span key={t} className="pill px-2.5">{t}</span>
         ))}
       </div>
-
-      {project.hasDetail ? (
-        <Link href={`/works/${project.slug}`} className="btn btn-line btn-accent mt-auto self-stretch text-[14px]">
-          View details <Arrow />
-        </Link>
-      ) : (
-        <button type="button" onClick={() => setNotice(true)} className="btn btn-line mt-auto self-stretch text-[14px]">
-          View details <Arrow />
-        </button>
-      )}
 
       {notice && (
         <div role="status" className="flex items-start justify-between gap-2.5 rounded-[14px] border border-[#141414] bg-[#F2F2EF] px-3 py-2.5 text-[13px] font-medium leading-snug">
@@ -44,6 +54,41 @@ export default function ProjectCard({ project }: { project: Project }) {
           </button>
         </div>
       )}
+
+      <div className="relative -mx-5 mt-auto h-[250px] flex-none overflow-hidden">
+        <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105">
+          {project.image1 ? (
+            <div
+              className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+              style={
+                (project.image1Size?.[0] ?? 1) / (project.image1Size?.[1] ?? 1) >= 1
+                  ? { width: "88%" }
+                  : { height: 215, aspectRatio: `${project.image1Size?.[0]} / ${project.image1Size?.[1]}` }
+              }
+            >
+              <Image src={project.image1} alt={`${project.title} preview`} width={project.image1Size?.[0] ?? 0} height={project.image1Size?.[1] ?? 0} sizes="(max-width: 700px) 95vw, 900px" quality={95} className="h-full w-full rounded-xl border border-[#141414] object-cover" />
+            </div>
+          ) : (
+            <div className="shot rounded-xl text-[11px]" style={{ left: "12%", top: 60, width: "76%", height: 180, transform: "rotate(-3deg)" }}>[IMAGE]</div>
+          )}
+        </div>
+      </div>
+      <div className="flex gap-2">
+        {project.hasDetail ? (
+          <Link href={`/works/${project.slug}`} className="btn btn-line btn-accent flex-1 text-[14px]">
+            View details <Arrow />
+          </Link>
+        ) : (
+          <button type="button" onClick={() => setNotice(true)} className="btn btn-line flex-1 text-[14px]">
+            View details <Arrow />
+          </button>
+        )}
+        {project.demo && (
+          <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn btn-line flex-1 text-[14px]">
+            Visit system <Arrow />
+          </a>
+        )}
+      </div>
     </div>
   );
 }

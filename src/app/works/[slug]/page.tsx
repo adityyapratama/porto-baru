@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import Reveal from "@/components/Reveal";
 import { projectDetail } from "@/data/content";
 
 type Params = { slug: string };
@@ -39,6 +40,7 @@ export default async function WorkDetailPage({ params }: { params: Promise<Param
         All works
       </Link>
 
+      <Reveal>
       <header className="panel flex flex-col gap-4 p-8">
         <span className="pill self-start px-3 tracking-[0.04em]" style={{ background: "var(--accent)" }}>{d.kicker}</span>
         <h1 className="display">
@@ -59,13 +61,17 @@ export default async function WorkDetailPage({ params }: { params: Promise<Param
           ))}
         </div>
       </header>
+      </Reveal>
 
+      <Reveal delay={0.05}>
       <section aria-label="Gallery" className="white relative h-[360px] overflow-hidden rounded-[32px]">
         <div className="shot fl rounded-2xl text-[13px]" style={{ left: "8%", top: 44, width: "44%", height: 260, zIndex: 1 }}>[IMAGE 1]</div>
         <div className="shot fr rounded-2xl text-[13px]" style={{ right: "8%", top: 56, width: "44%", height: 260, zIndex: 2 }}>[IMAGE 2]</div>
       </section>
+      </Reveal>
 
       <section className="detail-grid">
+        <Reveal variant="left" className="h-full [&>*]:h-full">
         <div className="panel card flex min-w-0 flex-col gap-3.5 p-7">
           <h2 className="text-[32px] font-medium leading-none tracking-[-0.035em]">What I did</h2>
           {d.did.map((item) => (
@@ -75,15 +81,20 @@ export default async function WorkDetailPage({ params }: { params: Promise<Param
             </div>
           ))}
         </div>
+        </Reveal>
+        <Reveal variant="left" delay={0.09} className="h-full [&>*]:h-full">
         <div className="panel card flex min-w-0 flex-col gap-3.5 p-7">
           <h2 className="text-[32px] font-medium leading-none tracking-[-0.035em]">Outcome</h2>
           <p className="text-[15px] leading-[1.55] text-[#6B6B6B]">{d.outcome}</p>
           <h3 className="mt-2 text-[22px] font-medium tracking-[-0.025em]">What I learned</h3>
           <p className="text-[15px] leading-[1.55] text-[#6B6B6B]">{d.learned}</p>
         </div>
+        </Reveal>
       </section>
 
-      <Footer variant="detail" />
+      <Reveal>
+        <Footer variant="detail" />
+      </Reveal>
     </div>
   );
 }

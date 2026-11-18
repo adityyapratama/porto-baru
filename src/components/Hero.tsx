@@ -1,4 +1,7 @@
 import { site } from "@/data/content";
+import Image from 'next/image'
+import Nav from "@/components/Nav";
+import Reveal from "@/components/Reveal";
 
 function Coffee() {
   return (
@@ -65,7 +68,9 @@ const socials = [
 export default function Hero() {
   return (
     <aside className="left">
-      <header className="panel flex flex-col gap-[18px] p-7">
+      <Nav/>
+      <header className="panel flex flex-col gap-[18px] p-7 mt-10">
+        <Reveal variant="right" delay={0.05} className="self-start">
         <div
           className="photo flex items-center justify-center text-center text-[14px] font-medium"
           style={{
@@ -73,18 +78,22 @@ export default function Hero() {
             width: 180,
             height: 210,
             boxSizing: "border-box",
-            border: "1px solid #141414",
+            border: "5px solid #141414",
             borderRadius: 18,
-            background: "#D9CCFF center / cover",
-            padding: 12,
+            overflow: "hidden",
+            padding: 0,
             margin: "2px 0 6px 4px",
           }}
         >
-          [YOUR PHOTO]
+          <Image src="/assets/ahaha-crop.jpg" alt="Adit's photo" width={640} height={763} sizes="180px" quality={95} priority style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
+        </Reveal>
 
-        <h1 className="h1-hero">Hi, I&apos;m Adit.</h1>
+        <Reveal variant="right" delay={0.15}>
+          <h1 className="h1-hero">Hi, I&apos;m Adit.</h1>
+        </Reveal>
 
+        <Reveal variant="right" delay={0.25} className="self-start max-w-full">
         <div
           className="inline-flex max-w-full items-center gap-3"
           style={{ alignSelf: "flex-start", boxSizing: "border-box", padding: "8px 16px 8px 8px", background: "var(--accent)", border: "1px solid #141414", borderRadius: 14 }}
@@ -94,16 +103,19 @@ export default function Hero() {
           </div>
           <span className="text-[15px] font-medium leading-tight">Let&apos;s sit down and have a coffee together.</span>
         </div>
+        </Reveal>
 
-        <p className="text-[18px] font-medium leading-[1.4]">
+        <Reveal variant="right" delay={0.35}>
+        <p className="sub leading-[1.6]">
           Junior software engineer who just <span className="hl" style={{ padding: "0 4px", borderRadius: 0 }}>loves to build</span>.
           Hand me a real problem and I&apos;ll turn it into something that works.
         </p>
+        </Reveal>
 
         <div className="flex gap-3">
-          {socials.map((s) => (
+          {socials.map((s, i) => (
+            <Reveal key={s.label} variant="right" delay={0.45 + i * 0.1}>
             <a
-              key={s.label}
               href={s.href}
               aria-label={s.label}
               className="btn inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#141414]"
@@ -113,6 +125,7 @@ export default function Hero() {
                 {s.icon}
               </svg>
             </a>
+            </Reveal>
           ))}
         </div>
       </header>
