@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 import Reveal from "./Reveal";
+import StepSticker, { type StepIconName } from "@/stickers/StepSticker";
 
 type Step = {
   title: string;
   desc: string;
   outcome: string;
-  icon: ReactNode;
+  icon: StepIconName;
   checkBg?: string;
   accent: boolean;
   chip?: string;
@@ -19,13 +20,7 @@ const steps: Step[] = [
     accent: true,
     chip: "Start here",
     checkBg: "#ADD7C6",
-    icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M26 20h30a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H44l-8 8V42h-10z" fill="#141414" transform="translate(-2 2)" />
-        <path d="M8 8h30a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H20l-8 8V32H8a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4z" fill="#FFC62B" stroke="#141414" strokeWidth="3" strokeLinejoin="round" />
-        <path d="M12 15h22M12 22h14" stroke="#141414" strokeWidth="3" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: "chat",
   },
   {
     title: "Design the flow",
@@ -33,15 +28,7 @@ const steps: Step[] = [
     outcome: "Something you can click, not just imagine",
     accent: true,
     checkBg: "#C7B8EB",
-    icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-        <rect x="4" y="4" width="24" height="24" rx="5" fill="#F2F2EF" stroke="#141414" strokeWidth="3" />
-        <circle cx="46" cy="16" r="12" fill="#FFC62B" stroke="#141414" strokeWidth="3" />
-        <path d="M4 36h24v24H4z" fill="#141414" />
-        <path d="M4 60V44a8 8 0 0 1 8-8h16v24z" fill="#FFC62B" />
-        <path d="M46 33l13 13-13 13-13-13z" fill="#FFC62B" stroke="#141414" strokeWidth="3" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: "pen",
   },
   {
     title: "Build it properly",
@@ -49,30 +36,14 @@ const steps: Step[] = [
     outcome: "Features that actually work",
     accent: true,
     checkBg: "#AFCBE7",
-    icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-        <rect x="3" y="8" width="58" height="48" rx="4" fill="#FFFFFF" stroke="#141414" strokeWidth="3" />
-        <path d="M3 20h58" stroke="#141414" strokeWidth="3" />
-        <circle cx="10" cy="14" r="1.8" fill="#141414" />
-        <circle cx="16" cy="14" r="1.8" fill="#141414" />
-        <circle cx="22" cy="14" r="1.8" fill="#141414" />
-        <path d="M20 28l-8 8 8 8M44 28l8 8-8 8M36 26l-8 20" fill="none" stroke="#141414" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: "phone",
   },
   {
     title: "Ship and keep improving",
     desc: "I launch, watch how people really use it, and fix what hurts. Launch day is where the learning begins.",
     outcome: "A live product that keeps getting better",
     accent: false,
-    icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M32 3C42 12 44 24 42 38H22C20 24 22 12 32 3z" fill="#FF6F00" stroke="#141414" strokeWidth="3" strokeLinejoin="round" />
-        <path d="M22 38L12 48V40l8-12zM42 38l10 10V40l-8-12z" fill="#FF6F00" stroke="#141414" strokeWidth="3" strokeLinejoin="round" />
-        <path d="M28 42h8l-2 14a2 2 0 0 1-4 0z" fill="#FF6F00" stroke="#141414" strokeWidth="3" strokeLinejoin="round" />
-        <circle cx="32" cy="26" r="6" fill="#FFFFFF" stroke="#141414" strokeWidth="3" />
-      </svg>
-    ),
+    icon: "plane",
   },
 ];
 
@@ -90,7 +61,7 @@ export default function HowIWork() {
     rows.push(
       <Reveal key={`r${i}`} variant="flip" className={`row${rev ? " rev" : ""}`}>
         <div className="tile">
-          {s.icon}
+          <StepSticker name={s.icon} offset={i * 20} />
           {s.checkBg && (
             <span className="check" style={{ background: s.checkBg }}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#141414" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

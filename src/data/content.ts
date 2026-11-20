@@ -10,29 +10,31 @@ export const jobs: Job[] = [
   {
     isNow: true,
     date: "Feb 2026 – Present",
-    role: "Software Developer Intern",
-    org: "Direktorat Sistem Informasi dan Digitalisasi, Unair",
+    role: "Freelance Software Engineer",
+    org: "Independent",
     notes: [
-      "Played a key role in the Curriculum Digitalization Project by designing and implementing a scalable Design System for academic process digitalization.",
-      "Collaborated cross-functionally to deliver reliable end-to-end features, optimize performance, and maintain clean, scalable architecture standards.",
+      "Take on client projects with a team I put together per job.",
+      "Most recent: integrated campus software for Poltekkes Malang — single sign-on, quality assurance (SPMI), and outcome-based education tracking (OBE).",
     ],
   },
   {
     isNow: true,
-    date: "Nov 2024 – Present",
-    role: "Co-Founder",
-    org: "Evop Tech",
+    date: "Feb 2026 – Present",
+    role: "Software Developer Intern",
+    org: "Direktorat Sistem Informasi dan Digitalisasi, Unair",
     notes: [
-      "Co-founded a student-led software house delivering real-world web projects while continuing studies.",
-      "Collaborated with teams to develop and deliver client projects based on problems and business requirements.",
+      "Built the design system behind SMaRT UNAIR's curriculum module, so new academic screens reuse the same components instead of starting from scratch.",
+      "Shipped the REST API in AdonisJS and the frontend in Next.js, as a team of two with my mentor.",
     ],
   },
   {
     isNow: false,
-    date: "Aug 2026 - Present",
-    role: "Freelance Developer",
-    org: "Poltekkes Malang",
-    notes: ["Built integrated campus software: SSO, SPMI and OBE."],
+    date: "Nov 2024 – Aug 2026",
+    role: "Co-Founder",
+    org: "Evop Tech",
+    notes: [
+      "Co-founded a student-led software house with friends from campus, working with a fixed team on client web projects. Currently on pause.",
+    ],
   },
 ];
 

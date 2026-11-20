@@ -13,9 +13,7 @@ export default function About() {
           I like exploring and finding what&apos;s <span className="hl">interesting</span>.
         </h2>
         <p className="sub max-w-[600px] leading-[1.6]">
-          I&apos;m a final-year Computer Science student at Universitas Airlangga and a Junior Software Engineer who has
-          shipped real products for clients and organizations. I start by understanding the problem behind each
-          requirement, then solve it end to end, from design to launch.
+         Final-year Informatics Engineering student at Universitas Airlangga. When someone asks for a button, I want to know what they’re trying to get done. I open one tab to fix a bug and end up with twelve. The coffee goes cold.
         </p>
       </div>
     </section>

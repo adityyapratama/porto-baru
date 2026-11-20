@@ -2,6 +2,7 @@ import { site } from "@/data/content";
 import Image from 'next/image'
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
+import FlipChip from "@/components/FlipChip";
 
 function Coffee() {
   return (
@@ -85,7 +86,7 @@ export default function Hero() {
             margin: "2px 0 6px 4px",
           }}
         >
-          <Image src="/assets/ahaha-crop.jpg" alt="Adit's photo" width={640} height={763} sizes="180px" quality={95} priority style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+          <Image src="/assets/profile-tokyo.jpg" alt="Adit's photo" width={680} height={793} sizes="180px" quality={95} priority style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
         </Reveal>
 
@@ -94,21 +95,23 @@ export default function Hero() {
         </Reveal>
 
         <Reveal variant="right" delay={0.25} className="self-start max-w-full">
-        <div
-          className="inline-flex max-w-full items-center gap-3"
-          style={{ alignSelf: "flex-start", boxSizing: "border-box", padding: "8px 16px 8px 8px", background: "var(--accent)", border: "1px solid #141414", borderRadius: 14 }}
-        >
-          <div className="flex h-14 w-14 flex-none items-center justify-center rounded-[10px] border border-[#141414] bg-white">
-            <Coffee />
-          </div>
-          <span className="text-[15px] font-medium leading-tight">Let&apos;s sit down and have a coffee together.</span>
-        </div>
+        <FlipChip
+          front={
+            <>
+              <div className="flex h-14 w-14 flex-none items-center justify-center rounded-[10px]  ">
+                <Coffee />
+              </div>
+              <span className="text-[15px] font-medium leading-tight">Let&apos;s sit down and have a coffee together.</span>
+            </>
+          }
+          back="I like to design and dev."
+        />
         </Reveal>
 
         <Reveal variant="right" delay={0.35}>
         <p className="sub leading-[1.6]">
-          Junior software engineer who just <span className="hl" style={{ padding: "0 4px", borderRadius: 0 }}>loves to build</span>.
-          Hand me a real problem and I&apos;ll turn it into something that works.
+          Junior software engineer from Surabaya. <span className="hl" style={{ padding: "0 4px", borderRadius: 0 }}>Still brewing,</span> already shipping
+        
         </p>
         </Reveal>
 

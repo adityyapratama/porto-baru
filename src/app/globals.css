@@ -24,7 +24,7 @@ html { scroll-behavior: auto; }
 body {
   margin: 0;
   background-color: #DFEBF5;
-  background-image: url(/clouds.svg);
+  background-image: url(/bg-pagi.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -101,7 +101,7 @@ h1, h2, h3, p { margin: 0; }
 .flow .row::before { top: 0; }
 .flow .row::after { bottom: 0; }
 .flow .row:nth-child(1)::before, .flow .row:nth-child(7)::after { display: none; }
-.flow .tile { position: relative; z-index: 2; flex: none; width: 96px; height: 96px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #F6F6F6; border: 1px solid var(--ink); border-radius: 22px; transition: transform .15s ease; }
+.flow .tile { position: relative; z-index: 2; flex: none; width: 96px; height: 96px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #F6F6F6; border: 1px solid var(--ink); border-radius: 22px; overflow: visible; transition: transform .15s ease; }
 .flow .row:hover .tile { transform: rotate(-4deg) scale(1.05); }
 .flow .stub { flex: none; width: 28px; height: 4px; background: transparent; }
 .flow .step { flex: 1 1 0; min-width: 0; max-width: 640px; box-sizing: border-box; border: 1px solid var(--ink); border-radius: 20px; padding: 18px 22px; display: flex; flex-direction: column; gap: 8px; }
@@ -139,3 +139,11 @@ h1, h2, h3, p { margin: 0; }
   .flow .step { background-color: var(--bg, #fff); }
   .flow .row:hover .tile { transform: none; }
 }
+
+/* ---------- flip chip (hero) ---------- */
+.flipchip { display: inline-block; align-self: flex-start; max-width: 100%; perspective: 900px; outline-offset: 3px; }
+.flipchip-inner { display: grid; transition: transform .6s cubic-bezier(.3,1.3,.5,1); transform-style: preserve-3d; }
+.flipchip-face { grid-area: 1 / 1; display: flex; align-items: center; gap: 12px; box-sizing: border-box; padding: 8px 16px 8px 8px; background: var(--accent); border: 1px solid var(--ink); border-radius: 14px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flipchip-face.back { transform: rotateY(180deg); }
+.flipchip.is-flipped .flipchip-inner { transform: rotateY(180deg); }
+@media (prefers-reduced-motion: reduce) { .flipchip-inner { transition: none; } }
